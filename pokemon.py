@@ -1,28 +1,60 @@
+#   @author Alexander Skeba
 class Pokemon():
     
     #create an intitialization function for each new pokemon
-    def __init__(self, name, type, level, moves, attack, defense, total_health):
+    def __init__(self, name, type, nature, level, attack, defense, speed, max_health, moves = ["-----","-----","-----","-----"]):
+        """
         
+        Parameters:
+        name (string): Name of Pokemon
+        type (string): Type of Pokemon (ex. "water", "fire", "grass")
+        nature (string): Nature of Pokemon (ex. "Attack", "Defense", "Speed")
+        level (int): Initial level of Pokemon
+        attack (int): Attack stat of a pokemon
+        defense (int): Defense stat of a pokemon
+        speed (int): Speed stat of a pokemon
+        max_health (int): Max Health of a pokemon 
+        moves (list): Moveset of a pokemon
+        
+        """
         self.name = name 
         self.type = type 
+        self.nature = nature
         self.level = level
-        self.moves = moves
         self.attack = attack
         self.defense = defense
-        self.total_health = total_health
+        self.speed = speed
+        self.max_health = max_health
+        self.moves = moves
+        
+        self.current_health = max_health
         # create a string representation of the move set to allow the user to choose a move 
         self.moveset = " (1) {0:>5} \t (2) {1:>5} \n (3) {2:>5} \t (4) {3:>5} \n".format(self.moves[0], self.moves[1], self.moves[2], self.moves[3])
+
         
     
+    def __str__(self):
+        return f'Stats: \n Name: {self.name} \n Type: {self.type} \n Nature: {self.nature} \n Level: {self.level} \n Attack: {self.attack} \n Defense: {self.defense} \n Speed: {self.speed} \n Max Health: {self.max_health} \n Moves: {self.moves} \n Current Health: {self.current_health} \n'
+        
     #increase the stats of the pokemon after they level up
-    def level_up(self, level, attack, defense, total_health):
-        pass
+    def level_up(self):
+        #set a limit of lv. 100 for each pokemon, if pokemon is already lv 100 exit the level up sequence 
+        if self.level <= 100:
+            self.level += 1
+        else:
+            return
+        self.attack += 1
+        self.defense += 1
+        self.speed += 1
+        #Check its Nature and level up stats accordingly
+        if self.nature == "attack":
+            self.attack += 2 
+        if self.nature == "defense":
+            self.defense += 2
+        if self.nature == "speed":
+            self.speed += 2 
         
-    #display moves 
-    def show_moves(self):
         
-        pass
-    
     #choose move
     def choose_move(self):
     
@@ -40,6 +72,5 @@ class Pokemon():
         
 
 
-squirtle = Pokemon("squirtle", "water", 5, ["tackle", "growl", "-----", "-----"], 10, 15, 15)
-
-print(squirtle.attack)
+squirtle = Pokemon("squirtle", "water", "defense", 5, 10, 15, 10, 15, ["tackle", "growl", "-----", "-----"])
+blank = Pokemon("missingo", "none", "none",0, 0, 0, 0 ,0)
