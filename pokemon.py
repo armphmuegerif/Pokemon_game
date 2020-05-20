@@ -2,7 +2,7 @@
 class Pokemon():
     
     #create an intitialization function for each new pokemon
-    def __init__(self, name, type, nature, level, attack, defense, speed, max_health, moves = ["-----","-----","-----","-----"], move_dict={}):
+    def __init__(self, name, type, nature, level, attack, defense, speed, max_health, moves = ["-----","-----","-----","-----"]):
         """
         
         Parameters:
@@ -94,17 +94,31 @@ class Move():
     
 def generate_Moves():
     '''
-    Generates a dictionary where the 'key' is the name of the move, and the 'value' is the Move object
+    Generates a dictionary from the moveset.csv file located in the same folder.  
     '''
-    
+    import pandas as pd
+    movesets = pd.read_csv("moveset.csv", delimiter = ',')
     all_moves = {}
-    moves = [['tackle', 'normal', 10],['scratch', 'normal', 10], ['water gun', 'water', 10], ['ember', 'fire', 10], ['vine whip', 'grass', 10]]
-    for move in moves:
-        all_moves[move[0]] = (Move(move[0],move[1],move[2]))
+    for row, label in movesets.iterrows():
+        all_moves[label['Name']] = Move(label['Name'],label['Type'],label['Attack'],label['Stat_move'])
+
     return all_moves
+
+def generate_Pokedex():
+    '''
+    Generates a dictionary containing attributes for each Pokemon
+    '''
+    import pandas as pd
+    pokedex_csv = pd.read_csv("pokedex.csv", delimiter = ',')
+    pokedex = {}
+    for row, label in pokedex_csv.iterrows():
+        pokedex[label['Name']] = Pokemon(label['Name'], label['Type'], label['Nature'], label['Level'], label['Attack'], label['Defense'], label['Speed'], label['Max_health'], label['Moves'])
+    
+    return pokedex
+    
 
     
     
     
-squirtle = Pokemon("squirtle", "water", "defense", 5, 10, 15, 10, 15, ["tackle", "growl", "-----", "-----"])
+squirtle = Pokemon("squirtle", "water", "defense", 5, 10, 15, 10, 15, ["tackle", "growl", "-----", "-----"], )
 blank = Pokemon("missingo", "none", "none",0, 0, 0, 0 ,0)

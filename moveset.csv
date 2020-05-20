@@ -1,0 +1,7 @@
+Name,Type,Attack,Stat_move
+“tackle”,“normal”,10,“N/A”
+“scratch”,“normal”,10,“N/A”
+“water gun”,“water”,10,“N/A”
+“ember”,“fire”,10,“N/A”
+“vine whip”,“grass”,10,“N/A”
+“growl”,“N/A”,“N/A”,“Opp_attack_down”

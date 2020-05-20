@@ -1,0 +1,4 @@
+Name,Type,Nature,Level,Attack,Defense,Speed,Max_health,Moves
+Squirtle,water,defense,5,10,15,10,15,"[“tackle”, “water gun”, “-----”,”-----”]"
+Charmander,fire,attack,5,15,10,12,15,"[“scratch”,”ember”,”-----”,”-----”]"
+Bulbasaur,grass,speed,5,10,10,15,15,"[“tackle”,”vine whip”,”-----”,”-----”]"
